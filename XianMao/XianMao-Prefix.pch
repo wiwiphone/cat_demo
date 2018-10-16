@@ -1,0 +1,357 @@
+//
+//  Prefix header
+//
+//  The contents of this file are implicitly included at the beginning of every source file.
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_5_0
+#warning "This project uses features only available in iOS SDK 5.0 and later."
+#endif
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+
+#import "MLTransitionAnimation.h"
+#import "UIViewController+MLTransition.h"
+
+#import "UIColor+Expanded.h"
+#import "UIImage+Color1.h"
+#import "NSDictionary+Additions.h"
+#import "NSDate+Additions.h"
+#import "UIView+Geometry.h"
+
+#import "UIImageView+WebCache.h"
+#import "UIButton+WebCache.h"
+
+#import "UIView+convenience.h"
+
+#import "CoordinatingController.h"
+
+
+#import "UIView+FirstResponder.h"
+#import "UIScrollView+KeyboardCtrl.h"
+#import "UIInsetCtrls.h"
+#import "DataSources.h"
+#import "MBSimpleSingletonCommand.h"
+#import "MBSimpleStaticCommand.h"
+#import "MBSimpleStaticCommand+MBProxy.h"
+#import "MBSimpleInstanceCommand.h"
+#import "MBSimpleInstanceCommand+MBProxy.h"
+#import "MBDefaultFacade.h"
+#import "MBGlobalFacade.h"
+#import "MBDefaultNotification.h"
+#import "MBDefaultMediator.h"
+#import "MBCommandInterceptor.h"
+#import "MBCommandInvocation.h"
+#import "MBUtil.h"
+#import "MBDefaultMessageReceiver.h"
+#import "MBDefaultMessageReceiver+MBProxy.h"
+
+#define MR_SHORTHAND
+#import "CoreData+MagicalRecord.h"
+//#import "EaseMob.h"
+#import "EMClient.h"
+#import "DXChatBarMoreView.h"
+
+#import "UMessage.h"
+#import "UMMobClick/MobClick.h"
+#import "Constants.h"
+
+#import "XMWebImageView.h"
+#import "NSString+jakf.h"
+
+#import "ClientReportObject.h"
+#import "Masonry.h"
+#import "SkinIconManager.h"
+#import "NetworkAPI.h"
+#import "AppDirs.h"
+#import "Error.h"
+#import "Session.h"
+#endif
+
+#define BUGLY_ID @"e817dfc90f"
+#define KEY_VALUE @"AbcdEfgHijkLmnOp"
+//是否开启https验证
+#define ADMopenHttpsSSL YES
+//Https证书
+#if DEBUG
+#define ADMHttpsCer @"ssl_certificate_app"
+#else
+#define ADMHttpsCer @"ssl_certificate_app"
+#endif
+
+#define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
+#define SYSTEM_VERSION_GREATER_THAN(v)              ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v)     ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)
+
+#define NSEaseLocalizedString(key, comment) [[NSBundle bundleWithURL:[[NSBundle mainBundle] URLForResource:@"EaseUIResource" withExtension:@"bundle"]] localizedStringForKey:(key) value:@"" table:nil]
+
+#define SYSTEMCURRENTV [UIDevice currentDevice].systemVersion.doubleValue
+
+// block self
+#define WEAKSELF typeof(self) __weak weakSelf = self;
+#define STRONGSELF typeof(weakSelf) __strong strongSelf = weakSelf;
+
+#define _OBJ_RetainCount(obj) { void *p =(__bridge void *)(obj); NSLog(@"obj retainCount=%x", _objc_rootRetainCount(p));}
+
+#define CENT_INTEGER_TO_FLOAT_YUAN(x) ((double)x/100.f)
+
+
+#define kScreenWidth  ((float)[[UIScreen mainScreen] bounds].size.width)
+#define kScreenHeight ((float)[[UIScreen mainScreen] bounds].size.height)
+#define kScreenScale ([UIScreen mainScreen].scale)
+
+#define kADMChatMaxImageSize 800
+#define kADMPublishGoodsImageSize 800
+#define kADMConsignImageSize 640
+#define kADMAvatarSize 400
+#define kADMFrontImageSize 640
+
+#define kADMUserNameMinLength 1
+
+#if !defined(FOUNDATION_STATIC_INLINE)
+#define FOUNDATION_STATIC_INLINE static __inline__
+#endif
+
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define IS_IPHONE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+#define IS_RETINA ([[UIScreen mainScreen] scale] >= 2.0)
+
+#define SCREEN_MAX_LENGTH (MAX(kScreenWidth, kScreenHeight))
+#define SCREEN_MIN_LENGTH (MIN(kScreenWidth, kScreenHeight))
+
+#define IS_IPHONE_4_OR_LESS (IS_IPHONE && SCREEN_MAX_LENGTH < 568.0)
+#define IS_IPHONE_5 (IS_IPHONE && SCREEN_MAX_LENGTH == 568.0)
+#define IS_IPHONE_6 (IS_IPHONE && SCREEN_MAX_LENGTH == 667.0)
+#define IS_IPHONE_6P (IS_IPHONE && SCREEN_MAX_LENGTH == 736.0)
+#define IS_GT_IPHONE_6 (IS_IPHONE && SCREEN_MAX_LENGTH >= 667.0)
+
+#define NOMALGOODS 1
+#define RETURNGOODS 2
+#define SELFGOODS 3
+
+#define TYPE_SELECE 6 //选择
+#define TYPE_TEXT_INPUT 7 //输入框
+#define TYPE_SIZE 8 //尺寸填写
+#define TYPE_COLOR 9 //颜色选择
+#define TYPE_MATCH 10 //一键匹配
+
+#define UNUSED 0
+#define USEING 1
+#define USED 2
+
+#define MAXPICCOUNT 15
+#define MAXRECOMMENDSIFTCOUNT 100*100
+#define kisNewCompositionHeight 52//18+18+16
+
+#define GOODSDETAILRETURN 1
+#define GOODSINDEX 0x1
+
+//聊天埋点
+#define CHAT_SEND 0
+#define CHAT_RECEIVE 1
+#define CHAT_READ 2
+
+//支付结果消息
+#define PAY_RESULT_COMPLETION @"PayResultCompletionNotification"
+#define PAY_RESULT_CANCEL @"PayResultCancelNotification"
+#define PAY_RESULT_FAILURE @"PayResultFailureNotification"
+
+//聊天下小红点
+#define kRedPoint @"isShowRedPoint"
+
+//字符串是否为空
+#define kStringIsEmpty(string) ([string isKindOfClass:[NSNull class]] || string == nil || [string length] < 1 ? YES : NO )
+//数组是否为空
+#define kArrayIsEmpty(array) (array == nil || [array isKindOfClass:[NSNull class]] || array.count == 0)
+//字典是否为空
+#define kDictIsEmpty(dict) (dict == nil || [dict isKindOfClass:[NSNull class]] || dict.allKeys ==0)
+
+#define XIAOFEICARD 0
+#define JIANDINGCARD 1
+#define XIHUCARD 2
+
+#define PUBLIC_KEY @"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC2Mwlp01SLI1IslyHjIKuIm4W8BTc3shutig5svKx3A6m7BwKWS56WlvBWJ5uZCvxkMSnOaAJNgl7phVA1Y88DiVbeB2xXIayy1j4YvKwsdRkoG9hCL6Qtl5vKp1ArzkVZ1wJR/5JrLiX5XGSS2mrYd7IHLQ4FaRYOjLlHToT6oQIDAQAB";
+
+//名称                viewCode    regionCode    data
+//搜索                10000       10010        keywords 搜索关键词
+//购物车              10000       10020
+//商品池              10000       10030        商品goodsId
+//精选                10001       10100
+//精选关注             10001       10101        商品goodsId,卖家的ID
+//精选分享             10001       10102       "商品goodsid,分享的渠道如微信,微博等,
+
+//渠道的参数格式 "channel":1000
+//渠道说明:1000代表微信,2000代表朋友圈,3000代表微博,4000代表qq 5000代表QQ空间,6000代表短信
+
+//精选图片详情          10001   10103   商品goodsId
+//精选商品详情          10001   10104   商品goodsId
+//精选点赞             10001   10105   商品goodsId
+//我的关注             10002   10100
+//我的关注关注          10002   10101   商品goodsId,卖家的ID
+//我的关注分享          10002   10102   "商品goodsid,分享的渠道如微信,微博等,
+//渠道的参数格式 "channel":1000
+//渠道说明:1000代表微信,2000代表朋友圈,3000代表微博,4000代表qq 5000代表QQ空间,6000代表短信
+//我的关注图片详情      10002   10103   商品goodsId
+//我的关注商品详情      10002   10104   商品goodsId
+//我的关注点赞         10002   10105   商品goodsId
+//
+//菜单导航
+//
+//名称            viewCode    regionCode  data
+//首页            50000       50001
+//喵窝            50000       50002
+//发布商品(自己买)  50000       50003
+//发布商品(求回收)  50000       50004
+//消息            50000       50005
+//我的            50000       50006
+
+#if DEBUG
+/* 开发版 */
+
+#define SENDPUBLISH @"https://mtest.aidingmao.com/jimai"
+
+#define ADMSHOPSELLER 9
+
+#else
+/**
+ *  正式环境
+ */
+#define SENDPUBLISH @"https://m.aidingmao.com/jimai"
+
+#define ADMSHOPSELLER 82278
+
+#endif
+
+#define NoReferPageCode 0
+
+#define HomeViewCode 10000
+#define CatHouseViewCode 12000
+#define PublishNormalViewCode 13000
+#define PublishRecoveryViewCode 14000
+#define MessageViewCode 15000
+#define MineViewCode 16000
+
+#define HomeChosenViewCode 10001
+#define HomeChosenMineAttentionViewCode 10002
+
+#define MineAttentionViewCode 11007
+#define MineFansViewCode 11008
+#define MinePurseViewCode 11009
+#define MineDiscountCouponViewCode 11010
+#define MineLikeViewCode 11011
+#define MineOfferedViewCode 11012
+#define MineBoughtViewCode 11013
+#define MineSoldViewCode 11014
+#define MineOnSaleViewCode 11015
+#define MineConsultantViewCode 11016
+#define MineFeedbackViewCode 11017
+#define MineWebViewCode 11018
+#define MineSettingViewCode 11019
+#define MineBillViewCode 11020
+#define MineCashMoneyViewCode 11021
+#define MineTopUpViewCode 11022
+#define MineAddDiscountCouponViewCode 11023
+#define MineSureOrderViewCode 11024
+#define DidPriceAllViewCode 11025
+#define DidPriceingViewCode 11026
+#define DidPriceAuthingViewCode 11027
+#define DidPriceEndViewCode 11028
+#define BoughtAllViewCode 11029
+#define BoughtWaitOutGoodsViewCode 11030
+#define BoughtWaitDetermineViewCode 11031
+#define BoughtWaitPutGoodsViewCode 11032
+#define BoughtCloseViewCode 11033
+#define BoughtServeAllViewCode 11034
+#define BoughtServeWaitOutGoodsViewCode 11035
+#define BoughtServeWaitServeViewCode 11036
+#define BoughtServeWaitPutGoodsViewCode 11037
+#define BoughtServeCloseViewCode 11038
+#define OrderDetailViewCode 11039
+#define ChatViewCode 11040
+#define SoldAllViewCode 11041
+#define SoldWaitOutGoodsViewCode 11042
+#define SoldAlrStrikeViewCode 11043
+#define SoldCloseViewCode 11044
+#define RecoverOneSelfAllViewCode 11045
+#define RecoverOneSelfSoldingViewCode 11046
+#define RecoverOneSelfEndViewCode 11047
+#define RecoverOneSelfWaitCheckViewCode 11048
+#define RecoverAllViewCode 11049
+#define RecoverWaitRecoverViewCode 11050
+#define RecoverEndViewCode 11051
+
+#define ManagePutGoodsAddrViewCode 11053
+#define AddPutGoodsAddrViewCode 11054
+#define ManageOutGoodsAddrViewCode 11055
+#define AddOutGoodsAddrViewCode 11056
+#define RecoveryGoodsDetailViewCode 11057
+#define RecoveryGoodsQuoteViewCode 11058
+#define RecoveryGoodsAuthUserViewCode 11059
+#define MessageNavChatViewCode 11060
+#define MessageNavNotifyTypeViewCode 11061
+#define MessageNavNotifyViewCode 11062
+
+#define RecoveryGoodsViewCode 11063
+#define RecoveryGoodsNewViewCode 11064
+#define RecoveryGoodsHotViewCode 11065
+#define RecoveryGoodsDownViewCode 11066
+#define CatalogueViewCode 11067
+#define BrandViewCode 11068
+#define IssureCatalogueViewCode 11069
+#define IssureBrandViewCode 11070
+#define FeedsViewCode 11071
+//#define WebViewCode 11072
+#define MatchViewCode 11073
+#define MineMeansViewCode 11074
+
+#define TabBarViewCode 11000
+
+
+#define HomeRegionCode 11001
+#define CatHouseRegionCode 11002
+#define PublishNormalRegionCode 11003
+#define PublishRecoveryRegionCode 11004
+#define MessageRegionCode 11005
+#define MineRegionCode 11006
+
+#define HomeSearchViewCode 10010
+#define HomeShopCarRegionCode 10020
+#define GoodsDetailRegionCode 10030
+
+#define HomeChosenRegionCode 10100
+#define HomeChosenAttentionRegionCode 1
+#define HomeChosenShareRegionCode 3
+#define HomeChosenPicRegionCode 10103
+#define HomeChosenGoodsRegionCode 10104
+#define HomeChosenSupportRegionCode 2
+#define HomeChosenUserHomeRegionCode 10106
+#define CallCustomerRegionCode 4
+#define CopyWChatNumRegionCode 12
+#define SetReceiveMessageRegionCode 13
+#define DeleHuanCunRegionCode 15
+#define SearchGoodsRecentRegionCode 16
+#define SearchGoodsHotRegionCode 17
+#define SearchGoodsDeleHistoryRegionCode 18
+#define SearchGoodsClickRegionCode 19
+#define SearchSellRecentRegionCode 20
+#define SearchSellHotRegionCode 21
+#define SearchSellDeleHistoryRegionCode 22
+#define SearchSellRegionCode 23
+#define SearchCutRegionCode 24
+#define AddShopCarRegionCode 25
+
+#define ShopCarReferPageCode HomeShopCarRegionCode
+#define GoodsDetailReferPageCode GoodsDetailRegionCode
+#define PicDetailReferPageCode HomeChosenPicRegionCode
+#define UserHomeReferPageCode HomeChosenUserHomeRegionCode
+
+
+
+//皮肤key
+#define SKIN @"SKIN"

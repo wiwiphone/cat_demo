@@ -1,0 +1,20 @@
+{
+	"cate_list":
+	[
+		{
+			"cate_id":100,
+			"cate_name":"服饰",
+			"icon_url":null
+		},
+		{
+			"cate_id":101,
+			"cate_name":"箱包",
+			"icon_url":null
+		},
+		{
+			"cate_id":102,
+			"cate_name":"鞋子",
+			"icon_url":null
+		}
+	]
+}

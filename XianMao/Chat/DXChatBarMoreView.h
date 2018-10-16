@@ -1,0 +1,52 @@
+/************************************************************
+  *  * EaseMob CONFIDENTIAL 
+  * __________________ 
+  * Copyright (C) 2013-2014 EaseMob Technologies. All rights reserved. 
+  *  
+  * NOTICE: All information contained herein is, and remains 
+  * the property of EaseMob Technologies.
+  * Dissemination of this information or reproduction of this material 
+  * is strictly forbidden unless prior written permission is obtained
+  * from EaseMob Technologies.
+  */
+
+#import <UIKit/UIKit.h>
+
+typedef enum{
+    ChatMoreTypeChat,
+    ChatMoreTypeGroupChat,
+}ChatMoreType;
+
+@protocol DXChatBarMoreViewDelegate;
+@interface DXChatBarMoreView : UIView
+
+@property (nonatomic,assign) id<DXChatBarMoreViewDelegate> delegate;
+
+@property (nonatomic, strong) UIButton *photoButton;
+@property (nonatomic, strong) UIButton *takePicButton;
+@property (nonatomic, strong) UIButton *selectGoods;
+@property (nonatomic, strong) UIButton *likeGoods;
+@property (nonatomic, strong) UIButton *seekGoods;
+@property (nonatomic, strong) UIButton *jiMaiGoods;
+@property (nonatomic, strong) UIButton *locationButton;
+@property (nonatomic, strong) UIButton *videoButton;
+@property (nonatomic, strong) UIButton *audioCallButton;
+
+- (instancetype)initWithFrame:(CGRect)frame isForChat:(BOOL)isForChat isGuwen:(BOOL)isGuwen isJimai:(BOOL)isJimai;
+
+@end
+
+@protocol DXChatBarMoreViewDelegate <NSObject>
+
+@required
+- (void)moreViewTakePicAction:(DXChatBarMoreView *)moreView;
+- (void)moreViewPhotoAction:(DXChatBarMoreView *)moreView;
+- (void)moreViewGoodsAction:(DXChatBarMoreView *)moreView;
+- (void)moreViewLikeAction:(DXChatBarMoreView *)moreView;
+- (void)moreViewSeekAction:(DXChatBarMoreView *)moreView;
+- (void)moreViewJimaiAction:(DXChatBarMoreView *)moreView;
+//- (void)moreViewLocationAction:(DXChatBarMoreView *)moreView;
+//- (void)moreViewVideoAction:(DXChatBarMoreView *)moreView;
+//- (void)moreViewAudioCallAction:(DXChatBarMoreView *)moreView;
+
+@end
